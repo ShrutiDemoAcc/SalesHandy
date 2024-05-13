@@ -3,18 +3,18 @@
         "url": "https://reqres.in/api/users",
         "method": "post",
         "status_code": 201,
-        "response_time_ms": 785.879
+        "response_time_ms": 1471.176
     },
     "getSingleUser.json": {
         "url": "https://reqres.in/api/users/2",
         "method": "get",
         "status_code": 200,
-        "response_time_ms": 756.731
+        "response_time_ms": 1055.723
     },
     "getUsers.json": {
         "url": "https://reqres.in/api/users",
         "method": "get",
         "status_code": 200,
-        "response_time_ms": 458.4
+        "response_time_ms": 1120.19
     }
 }

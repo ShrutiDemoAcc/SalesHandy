@@ -1,41 +1,43 @@
-import requests
-import json
-import os
-import time
-
+# Import necessary libraries
+import requests  #  send HTTP requests
+import json      #  work with JSON data
+import os        #  interact with the operating system
+import time      #  time-related operations like adding delays
 
 # Function to send HTTP requests and validate responses
 def test_endpoint(endpoint_config):
     # Extract request details from endpoint configuration
-    request_method = endpoint_config['request']['method']
-    request_url = endpoint_config['request']['url']
-    payload = endpoint_config['request'].get('payload')
+    request_method = endpoint_config['request']['method']  # Extracts the request method (GET or POST)
+    request_url = endpoint_config['request']['url']        # Extracts the URL for the API request
+    payload = endpoint_config['request'].get('payload')    # Extracts the payload data (if it exists)
 
     # Send HTTP request
     if request_method.lower() == 'get':
-        response = requests.get(request_url)
+        response = requests.get(request_url)               # Sends a GET request
     elif request_method.lower() == 'post':
-        response = requests.post(request_url, json=payload)
+        response = requests.post(request_url, json=payload) # Sends a POST request with JSON payload
 
     # Assertions
-    assert response.status_code == endpoint_config['assertions']['responseCode'], \
-        f"Expected status code {endpoint_config['assertions']['responseCode']}, but got {response.status_code}"
-    assert endpoint_config['assertions']['content-type'] in response.headers['Content-Type'], \
-        f"Expected content type {endpoint_config['assertions']['content-type']}, but got {response.headers['Content-Type']}"
+    for assertion_key, expected_value in endpoint_config['assertions'].items():
+        if assertion_key == 'responseCode':
+            assert response.status_code == expected_value, \
+                f"Expected status code {expected_value}, but got {response.status_code}"
+        elif assertion_key == 'content-type':
+            assert expected_value in response.headers['Content-Type'], \
+                f"Expected content type {expected_value}, but got {response.headers['Content-Type']}"
+        elif assertion_key == 'maxResponseTimeInMilliseconds':
+            assert response.elapsed.total_seconds() * 1000 <= expected_value, \
+                f"Response time exceeded maximum allowed time ({expected_value} ms)"
+        else:
+            print(f"Warning: Assertion key '{assertion_key}' not found in response JSON.")
 
-    # Check if 'maxResponseTimeInMilliseconds' key exists in assertions dictionary
-    if 'maxResponseTimeInMilliseconds' in endpoint_config['assertions']:
-        assert response.elapsed.total_seconds() * 1000 <= endpoint_config['assertions'][
-            'maxResponseTimeInMilliseconds'], \
-            f"Response time exceeded maximum allowed time ({endpoint_config['assertions']['maxResponseTimeInMilliseconds']} ms)"
-
+    # Return test result
     return {
         'url': request_url,
         'method': request_method,
         'status_code': response.status_code,
         'response_time_ms': response.elapsed.total_seconds() * 1000
     }
-
 
 # Main function to execute tests for all endpoints
 def main():
@@ -49,17 +51,18 @@ def main():
     for file_name in os.listdir(endpoints_directory):
         if file_name.endswith('.json'):
             with open(os.path.join(endpoints_directory, file_name), 'r') as file:
-                endpoint_config = json.load(file)
-                test_result = test_endpoint(endpoint_config)
-                test_results[file_name] = test_result
-                time.sleep(1)  # Adding a small delay between tests
+                endpoint_config = json.load(file)               # Loads the JSON configuration for the endpoint
+                test_result = test_endpoint(endpoint_config)   # Calls the test_endpoint function to test the endpoint
+                test_results[file_name] = test_result          # Stores the test result in a dictionary
+                time.sleep(1)  # Adding a small delay between tests to avoid overwhelming the server
 
     # Log test results
     with open('test_results.json', 'w') as results_file:
-        json.dump(test_results, results_file, indent=4)
+        json.dump(test_results, results_file, indent=4)       # Writes the test results to a JSON file
 
-    print("API tests completed. Test results have been logged.")
+    # Print completion message
+    print("API tests completed.")
 
-
+# Run the main function if the script is executed directly
 if __name__ == "__main__":
     main()

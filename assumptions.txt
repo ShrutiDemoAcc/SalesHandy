@@ -7,16 +7,14 @@
 ├── utils                       → Directoryof utility functions
 ├── config.py                   → Configurations file
 └── main.py                     → run scripts from heere
-# the above is the file structure
-
-
+# the above is the praposed file structure
 
 Mysteps-
 
 -created git repo
 -required python library installed.here i will use request library and JSON library, time and os.
 -requirement.txt downloaded
--config.py contain configurations URL or header.
+-config.py contain configurations URL or headers.
 -utils for http request and assertions
 -we can write test script in tests.
 
