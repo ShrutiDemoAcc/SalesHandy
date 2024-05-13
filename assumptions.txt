@@ -1,0 +1,35 @@
+├── src
+│   ├── endpoints               → all endpoints directory
+│   │   ├── getUsers.json       → get all the users
+│   │   ├── getSingleUser.json  → get a single user
+│   │   └── createUser.json     → post- create a new user
+├── tests                       → Directory of test scripts
+├── utils                       → Directoryof utility functions
+├── config.py                   → Configurations file
+└── main.py                     → run scripts from heere
+# the above is the file structure
+
+
+
+Mysteps-
+
+-created git repo
+-required python library installed.here i will use request library and JSON library, time and os.
+-requirement.txt downloaded
+-config.py contain configurations URL or header.
+-utils for http request and assertions
+-we can write test script in tests.
+
+assumptions of code:
+
+test_endpoint function-
+this will take endpoint configuration as input and send resp http request.will validate the response.
+
+main function= serves as a entry point for executing test.
+will iterate on each jason file. and will call the test_endpoint function.
+
+the script iterates through all JSON files in the src/endpoints/
+here new endpoint configurations can be added without modifying the code.
+Test results are stored in a dictionary for each endpoint configuration,
+
+A small delay of 1 second is added

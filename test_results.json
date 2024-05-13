@@ -1,0 +1,20 @@
+{
+    "createUser.json": {
+        "url": "https://reqres.in/api/users",
+        "method": "post",
+        "status_code": 201,
+        "response_time_ms": 785.879
+    },
+    "getSingleUser.json": {
+        "url": "https://reqres.in/api/users/2",
+        "method": "get",
+        "status_code": 200,
+        "response_time_ms": 756.731
+    },
+    "getUsers.json": {
+        "url": "https://reqres.in/api/users",
+        "method": "get",
+        "status_code": 200,
+        "response_time_ms": 458.4
+    }
+}

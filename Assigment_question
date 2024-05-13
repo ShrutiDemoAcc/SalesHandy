@@ -1,0 +1,35 @@
+
+
+Build a lightweight automation framework that can be used to write API Automation test cases fast and assert them easily.
+
+There should be one directory that should contain all the endpoints in the form of `.json` as described below.
+```
+├── src
+│   ├── endpoints               → directory which contains all the endpoints
+|   │   ├── getUsers.json       → Request json file to get all the users endpoint
+|   │   ├── getSingleUser.json  → Request json file to get a single user endpoint
+|   |   └── createUser.json     → Request json file to create a  new user
+```
+Example endpoints json files are attached under the `endpoints/` directory.
+
+
+- Framework should be able to test all the endpoint one by one under the `endpoints/*` directory
+- Every assertions mentioned in `endpoints/**.json` file should be asserted
+
+
+
+- Framework should be able to generate request **dynamically** based on the configuration mentioned under `endpoints/**.json` file >> `request` key
+- If a new configuration file is added under `endpoints/*` framework should automatically run the assertions as per mentioned in the configuration without writing an additional line of code
+- You can use [reqres](https://reqres.in/) - to build and test this framework. Other API platforms are also acceptable
+
+
+
+
+
+- You can use whatever directory/file structure you want, but there should be an `endpoints/` directory where we can post new endpoint
+- Every line of code should be clean, well-commented, and self-explanatory. Code has to be scalable & maintainable in the long run.
+
+
+
+
+
