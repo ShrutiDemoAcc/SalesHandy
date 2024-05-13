@@ -1,0 +1,39 @@
+- used error handling using try-except blocks to handle exceptions that may occur during the execution
+-inside the test_endpoint function, a try-except block is used to extract request details from the endpoint configuration.
+-If any of the required keys ('request', 'method', 'url') are missing, a KeyError will be raised.
+-again i have used try-except block to handle exceptions that may occur during the execution of HTTP
+requests. If any error occurs during the request execution,
+like invalid URLs, a requests.exceptions.
+RequestException will be raised.
+-assertions are performed to validate the response received
+from the API. If any
+assertion fails, a corresponding error message is printed.
+test results are stored in a dictionary
+ named test_results, which includes the URL, request method,
+ status code, and response time for each endpoint.
+ These results are then written to a JSON file named
+'test_results.json' using the json.dump() function.
+-ain function iterates through each JSON file in the
+'endpoints/' directory, loads the endpoint configuration,
+executes the test_endpoint function for each endpoint,
+stores the test results, and logs the results to the
+'test_results.json'
+-a completion message "API tests are completed." is printed
+
+# for using the script in future:
+1)nsure that these dependencies are installed and up-to-date
+2)if any changes in endpoints update JSON files in endpoints/ accordingly.
+3)Review the test assertions
+
+#if someone needs to add their api requests then?
+1)Create a new JSON file
+2)Place the newly created JSON file in the 'endpoints/'
+3)Run the script as usual
+4)eview the test results to verify the performance and behavior
+
+#can i add few or more assertion except present in this scrpt?
+1)include the additional assertions in the endpoint configuration JSON files located in the 'endpoints/' directory
+2)extend the for loop to include checks for the new assertion keys
+3)Add conditional statements to handle the new assertion keys
+4)may need to update the structure of the test_results dictionary to accommodate related date
+

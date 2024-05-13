@@ -1,20 +1,32 @@
 {
-    "createUser.json": {
-        "url": "https://reqres.in/api/users",
-        "method": "post",
-        "status_code": 201,
-        "response_time_ms": 1471.176
-    },
-    "getSingleUser.json": {
-        "url": "https://reqres.in/api/users/2",
-        "method": "get",
-        "status_code": 200,
-        "response_time_ms": 1055.723
-    },
-    "getUsers.json": {
-        "url": "https://reqres.in/api/users",
-        "method": "get",
-        "status_code": 200,
-        "response_time_ms": 1120.19
-    }
+     "createUser.json": {
+          "url": [
+               "https://reqres.in/api/users"
+          ],
+          "method": "post",
+          "status_code": [
+               201
+          ],
+          "response_time_ms": 1650.588
+     },
+     "getSingleUser.json": {
+          "url": [
+               "https://reqres.in/api/users/2"
+          ],
+          "method": "get",
+          "status_code": [
+               200
+          ],
+          "response_time_ms": 1126.502
+     },
+     "getUsers.json": {
+          "url": [
+               "https://reqres.in/api/users"
+          ],
+          "method": "get",
+          "status_code": [
+               200
+          ],
+          "response_time_ms": 1129.916
+     }
 }
